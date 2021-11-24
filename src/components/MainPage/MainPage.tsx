@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { fetchCurrencies } from '../../store/currenciesReducer/currenciesAPI';
-import { currenciesSelectors, setPage } from '../../store/currenciesReducer/currenciesReducer';
+import { currenciesSelectors, setPage, setSearchTerm } from '../../store/currenciesReducer/currenciesReducer';
 import CurrencyItem from '../CurrencyItem/CurrencyItem';
 import MainPageHead from './MainPageHead';
 import { Button, ButtonContainer, Loader, LoaderContainter, LoaderText, MainPageContainer } from './styled-components/styled-componets-mainpage';
@@ -11,10 +11,15 @@ import { csvDataComp, headers } from './utils/csv';
 const MainPage = () => {
 
     const dispatch = useAppDispatch();
-    const currencies = Object.values(useAppSelector(currenciesSelectors.selectEntities));
+    const {searchTerm, balances} = useAppSelector(state => state.currencies)
+    const currencies = Object.values(useAppSelector(currenciesSelectors.selectEntities)).filter(cur => {
+        const regex = new RegExp(searchTerm, 'is')
+        const string = cur?.name || '';
+        return regex.test(string)
+    });
     const { page, loading, noResults, loadingMore, error } = useAppSelector(state => state.currencies);
 
-    const csvData = csvDataComp(currencies);
+    const csvData = csvDataComp(balances);
     const csvReport = {
         fileName: 'Report.csv',
         headers: headers,

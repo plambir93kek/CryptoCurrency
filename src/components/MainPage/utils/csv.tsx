@@ -1,17 +1,15 @@
 export const headers = [
-    {label: 'ID', key: 'id'},
-    {label: 'name', key: 'name'},
-    {label: 'Current Price', key: 'current_price'},
-    {label: 'Volume', key:'total_volume'}
+    {label: 'address', key: 'address'},
+    {label: 'balance', key: 'balance'},
+    {label: 'id', key: 'id'},
 ];
-export const csvDataComp = (currencies:any[]) => {
+export const csvDataComp = (balances:any[]) => {
     let list:any[] =[]
-    currencies.forEach(cur => 
+    balances.forEach(bal => 
         list.push({
-            id: cur?.id,
-            name: cur?.name,
-            current_price: cur?.current_price,
-            total_volume: cur?.total_volume
+            address: bal?.address,
+            balance: bal?.balance,
+            id: bal?.id,
         })
         );
         return list

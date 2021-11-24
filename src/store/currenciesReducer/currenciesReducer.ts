@@ -1,7 +1,7 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { fetchCurrencies } from "./currenciesAPI";
-import { Currency } from "./types/currenciesTypes";
+import { Balance, Currency } from "./types/currenciesTypes";
 
 const currenciesAdapter = createEntityAdapter<Currency>();
 
@@ -12,13 +12,21 @@ const currenciesSlice = createSlice({
     loadingMore: false,
     error: false,
     noResults: false,
-    page: 1
+    page: 1,
+    searchTerm: '',
+    balances: <Balance[]>[]
   }),
   reducers: {
     setPage: (state, action) => {
       state.page = action.payload
     },
-    removeAllCurrencies: currenciesAdapter.removeAll
+    removeAllCurrencies: currenciesAdapter.removeAll,
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
+    addBalance: (state, action:PayloadAction<Balance>)=>{
+      state.balances.push(action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCurrencies.fulfilled, (state, action) => {
@@ -50,4 +58,4 @@ const currenciesSlice = createSlice({
 export default currenciesSlice.reducer;
 export const currenciesSelectors = currenciesAdapter.getSelectors<RootState>(
   (state) => state.currencies);
-export const { setPage, removeAllCurrencies } = currenciesSlice.actions
+export const { setPage, removeAllCurrencies, setSearchTerm, addBalance } = currenciesSlice.actions

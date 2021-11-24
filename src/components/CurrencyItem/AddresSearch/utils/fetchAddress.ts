@@ -1,8 +1,6 @@
 import axios from "axios"
+import { useDispatch } from "react-redux";
 
-interface Response {
-
-}
 
 export const fetchAddress = async(id:string, address:string, setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
     const url = `https://api.blockchair.com/${id}/dashboards/address/${address}`;

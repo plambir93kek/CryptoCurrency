@@ -17,7 +17,7 @@ export const fetchCurrencies = createAsyncThunk<
                 per_page: 10,
                 sparkline: false,
                 page: page,
-                ids: name
+                ids: 'bitcoin, bitcoin-cash, ethereum, dogecoin, litecoin, zcash, dash, bitcoin-sv, ecash, groestlcoin'
             }
         })
         return response.data;

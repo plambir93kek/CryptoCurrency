@@ -7,3 +7,9 @@ export interface Currency {
     total_volume: number;
     price_change_percentage_24h: number;
 }
+
+export interface Balance {
+    address: string;
+    balance: number;
+    id: string;
+}
