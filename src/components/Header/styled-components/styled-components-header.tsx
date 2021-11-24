@@ -13,7 +13,7 @@ export const HeaderContainer = styled.div`
 
 interface SearchInputProps {
   width: string;
-  placeholder?:string
+  shadow?:boolean
 }
 
 export const SearchInput = styled.input<SearchInputProps>`
@@ -21,7 +21,7 @@ export const SearchInput = styled.input<SearchInputProps>`
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(45px);
-  box-shadow: -2px 3px 20px rgb(0 0 0 / 41%);
+  box-shadow: ${(props)=>props.shadow===true? '-2px 3px 20px rgb(0 0 0 / 41%)' : ''};
   border: 1px solid hsla(0,0%,100%,.2);
   outline: none;
   padding: 10px;

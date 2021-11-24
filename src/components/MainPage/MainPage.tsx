@@ -1,5 +1,4 @@
-import { set } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { fetchCurrencies } from '../../store/currenciesReducer/currenciesAPI';
 import { currenciesSelectors, setPage } from '../../store/currenciesReducer/currenciesReducer';

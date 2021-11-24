@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { HeaderContainer, SearchContainer, SearchInput, SearchIconContainer } from './styled-components/styled-components-header';
 import { IoSearch } from "react-icons/io5";
 import { useAppDispatch } from '../../hooks/hooks';
@@ -33,6 +33,7 @@ const Header = () => {
         <HeaderContainer>
             <SearchContainer>
                 <SearchInput 
+                shadow={true}
                 onKeyPress={searchKey} 
                 onChange={handleSearch} 
                 width={'60vw'}
